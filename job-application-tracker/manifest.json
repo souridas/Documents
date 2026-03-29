@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "Job Application Tracker",
+  "version": "1.0.0",
+  "description": "Track job applications directly to Google Sheets from LinkedIn, Indeed, and Glassdoor.",
+  "permissions": [
+    "identity",
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "oauth2": {
+    "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/spreadsheets"
+    ]
+  },
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.linkedin.com/jobs/*",
+        "*://*.linkedin.com/job/*"
+      ],
+      "js": ["content/extractors/linkedin.js", "content/extractor.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.indeed.com/*"
+      ],
+      "js": ["content/extractors/indeed.js", "content/extractor.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.glassdoor.com/job-listing/*",
+        "*://*.glassdoor.com/Job/*"
+      ],
+      "js": ["content/extractors/glassdoor.js", "content/extractor.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

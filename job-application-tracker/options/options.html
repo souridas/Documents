@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="options.css">
+  <title>Job Tracker Settings</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Job Tracker Settings</h1>
+
+    <form id="settings-form">
+      <div class="form-group">
+        <label for="spreadsheetId">Google Sheet URL or ID</label>
+        <input type="text" id="spreadsheetId" placeholder="Paste your Google Sheets URL or spreadsheet ID" required>
+        <small>e.g. https://docs.google.com/spreadsheets/d/abc123.../edit</small>
+      </div>
+
+      <div class="form-group">
+        <label for="sheetName">Sheet Tab Name</label>
+        <input type="text" id="sheetName" value="Sheet1" placeholder="Sheet1">
+        <small>The name of the tab within the spreadsheet (default: Sheet1)</small>
+      </div>
+
+      <button type="submit" id="btn-save" class="btn btn--primary">Save & Connect</button>
+    </form>
+
+    <div id="status" class="status hidden"></div>
+
+    <div class="info">
+      <h3>Setup Instructions</h3>
+      <ol>
+        <li>Create a new Google Sheet (or use an existing one)</li>
+        <li>Copy the sheet URL from your browser's address bar</li>
+        <li>Paste it above and click "Save & Connect"</li>
+        <li>The extension will automatically create header rows</li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="options.js" type="module"></script>
+</body>
+</html>
