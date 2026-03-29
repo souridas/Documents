@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+  <title>Job Application Tracker</title>
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <h1 class="header__title">Job Tracker</h1>
+      <button id="btn-settings" class="header__settings-btn" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+      </button>
+    </header>
+
+    <section id="auth-section" class="section hidden">
+      <p class="section__text">Connect your Google account to save applications to Google Sheets.</p>
+      <button id="btn-auth" class="btn btn--primary btn--full">Sign in with Google</button>
+    </section>
+
+    <section id="no-sheet-section" class="section hidden">
+      <p class="section__text">No Google Sheet configured yet.</p>
+      <button id="btn-go-settings" class="btn btn--secondary btn--full">Configure Sheet</button>
+    </section>
+
+    <section id="form-section" class="section hidden">
+      <form id="job-form" class="form">
+        <div class="form__group">
+          <label for="dateApplied">Date Applied</label>
+          <input type="date" id="dateApplied" name="dateApplied" required>
+        </div>
+
+        <div class="form__row">
+          <div class="form__group form__group--half">
+            <label for="company">Company *</label>
+            <input type="text" id="company" name="company" required placeholder="e.g. Google">
+          </div>
+          <div class="form__group form__group--half">
+            <label for="jobRole">Job Role *</label>
+            <input type="text" id="jobRole" name="jobRole" required placeholder="e.g. Software Engineer">
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option value="Applied" selected>Applied</option>
+            <option value="Interview">Interview</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Offer">Offer</option>
+          </select>
+        </div>
+
+        <div class="form__group">
+          <label for="jobUrl">Job URL</label>
+          <input type="url" id="jobUrl" name="jobUrl" placeholder="https://...">
+        </div>
+
+        <div class="form__group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="2" placeholder="Brief job description..."></textarea>
+        </div>
+
+        <div class="form__row">
+          <div class="form__group form__group--half">
+            <label for="salaryRange">Salary Range</label>
+            <input type="text" id="salaryRange" name="salaryRange" placeholder="e.g. $100k-$130k">
+          </div>
+          <div class="form__group form__group--half">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="e.g. Remote">
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" rows="2" placeholder="Any notes..."></textarea>
+        </div>
+
+        <div class="form__group">
+          <label for="followUpDate">Follow-up Date</label>
+          <input type="date" id="followUpDate" name="followUpDate">
+        </div>
+
+        <button type="submit" id="btn-submit" class="btn btn--primary btn--full">
+          Save to Google Sheets
+        </button>
+      </form>
+    </section>
+
+    <div id="notification" class="notification hidden">
+      <span id="notification-message"></span>
+    </div>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
